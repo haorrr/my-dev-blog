@@ -2,7 +2,7 @@
 title: "{{ replace .Name "-" " " | title }}"
 date: {{ .Date }}
 category: "Java"
-image: "/images/placeholder.png"
+image: "images/placeholder.png"
 draft: false
 ---
 

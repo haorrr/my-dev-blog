@@ -2,6 +2,9 @@ baseURL = "https://haorrr.github.io/my-dev-blog/"
 languageCode = "vi-vn"
 title = "HoanHaoBlog"
 theme = "devblog"
+relativeURLs = true
+canonifyURLs = false
+
 
 [params]
   description = "Blog cá nhân về lập trình Java và JavaScript"
