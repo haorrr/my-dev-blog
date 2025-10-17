@@ -2,7 +2,7 @@
 title: "JavaScript là gì? Khởi đầu với ngôn ngữ web phổ biến nhất"
 date: 2025-10-12
 category: "JavaScript"
-image: "images/jsgioithieu.jpg"
+image: "/images/jsgioithieu.jpg"
 description: "JavaScript là ngôn ngữ lập trình phổ biến nhất thế giới, trụ cột của web development. Tìm hiểu cú pháp cơ bản, đặc điểm dynamically typed, first-class functions và ứng dụng từ client-side đến server-side với Node.js."
 ---
 

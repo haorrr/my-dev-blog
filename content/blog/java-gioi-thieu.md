@@ -2,7 +2,7 @@
 title: "Java là gì? Giới thiệu về ngôn ngữ lập trình Java"
 date: 2025-10-14
 category: "Java"
-image: "images/javagioithieu.jpg"
+image: "/images/javagioithieu.jpg"
 description: "Java là một trong những ngôn ngữ lập trình phổ biến nhất với triết lý 'Write Once, Run Anywhere'. Tìm hiểu về các đặc điểm nổi bật như hướng đối tượng, độc lập nền tảng, bảo mật cao và tại sao nên học Java."
 ---
 

@@ -2,7 +2,7 @@
 title: "Ứng dụng của Java trong thực tế"
 date: 2025-10-16
 category: "Java"
-image: "images/javaungdung.jpg"
+image: "/images/javaungdung.jpg"
 description: "Khám phá ứng dụng của Java trong thực tế từ phát triển Android, Web Enterprise với Spring Framework, Big Data với Hadoop/Spark, đến IoT và Cloud Computing. Nhiều công ty lớn như Google, Netflix, Amazon đang sử dụng Java."
 ---
 

@@ -2,7 +2,7 @@
 title: "Hiểu về Java Virtual Machine (JVM)"
 date: 2025-10-17
 category: "Java"
-image: "images/javajvm.jpg"
+image: "/images/javajvm.jpg"
 description: "Java Virtual Machine (JVM) là trái tim của nền tảng Java. Tìm hiểu kiến trúc JVM bao gồm Class Loader, Runtime Data Areas, Execution Engine, và cơ chế Garbage Collection để quản lý bộ nhớ tự động."
 ---
 

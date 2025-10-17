@@ -1,4 +1,5 @@
 baseURL = "https://haorrr.github.io/my-dev-blog/"
+canonifyURLs = true
 languageCode = "vi-vn"
 title = "Developer Blog - Java & JavaScript"
 theme = "devblog"

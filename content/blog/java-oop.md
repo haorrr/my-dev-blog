@@ -2,7 +2,7 @@
 title: "Lập trình hướng đối tượng (OOP) trong Java"
 date: 2025-10-18
 category: "Java"
-image: "images/javaoop.jpg"
+image: "/images/javaoop.jpg"
 description: "Lập trình hướng đối tượng (OOP) là nền tảng của Java. Nắm vững 4 nguyên lý cơ bản: Encapsulation (Đóng gói), Inheritance (Kế thừa), Polymorphism (Đa hình), và Abstraction (Trừu tượng) với ví dụ thực tế."
 ---
 
