@@ -1,0 +1,33 @@
+baseURL = "http://localhost:1313/"
+languageCode = "vi-vn"
+title = "Developer Blog - Java & JavaScript"
+theme = "devblog"
+
+[params]
+  description = "Blog cá nhân về lập trình Java và JavaScript"
+  author = "Võ Hoàn Hảo"
+  email = "vohao01012000@gmail.com"
+  github = "haorrr"
+
+[menu]
+  [[menu.main]]
+    name = "Trang chủ"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    name = "Blog"
+    url = "/blog/"
+    weight = 2
+  [[menu.main]]
+    name = "Về tôi"
+    url = "/about/"
+    weight = 3
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]

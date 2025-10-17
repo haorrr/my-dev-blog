@@ -1,0 +1,48 @@
+{{ define "main" }}
+
+<!-- Profile Section -->
+<section id="profile" class="profile-section">
+    {{ partial "profile.html" . }}
+</section>
+
+<!-- Blog Posts Section -->
+<section class="blog-section">
+    <div class="container">
+        <h2 class="section-title">Bài viết mới nhất</h2>
+        
+        <div class="blog-grid">
+            {{ range (where .Site.RegularPages "Section" "blog").ByDate.Reverse }}
+            <article class="blog-card">
+                {{ if .Params.image }}
+                <div class="blog-card-image">
+                    <img src="{{ .Params.image }}" alt="{{ .Title }}">
+                </div>
+                {{ end }}
+                
+                <div class="blog-card-content">
+                    <div class="blog-card-meta">
+                        <span class="blog-card-date">{{ .Date.Format "02/01/2006" }}</span>
+                        {{ with .Params.category }}
+                        <span class="blog-card-category">{{ . }}</span>
+                        {{ end }}
+                    </div>
+                    
+                    <h3 class="blog-card-title">
+                        <a href="{{ .Permalink }}">{{ .Title }}</a>
+                    </h3>
+                    
+                    <p class="blog-card-summary">
+                        {{ .Params.description }}
+                    </p>
+                    
+                    <a href="{{ .Permalink }}" class="blog-card-link">
+                        Đọc tiếp →
+                    </a>
+                </div>
+            </article>
+            {{ end }}
+        </div>
+    </div>
+</section>
+
+{{ end }}

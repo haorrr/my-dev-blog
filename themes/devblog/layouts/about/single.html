@@ -1,0 +1,552 @@
+{{ define "main" }}
+{{ $profile := .Site.Data.profile }}
+
+<div class="about-page">
+    <div class="container">
+        
+        <!-- Hero Section -->
+        <section class="about-hero">
+            <div class="about-hero-content">
+                <div class="about-avatar-large">
+                    <img src="{{ $profile.avatar }}" alt="{{ $profile.name }}">
+                </div>
+                <div class="about-hero-text">
+                    <h1>{{ $profile.name }}</h1>
+                    <p class="about-title">{{ $profile.title }}</p>
+                    <p class="about-bio">{{ $profile.bio }}</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section class="about-section">
+            <h2 class="section-heading">
+                <span class="section-icon">👋</span>
+                Về tôi
+            </h2>
+            <div class="about-intro">
+                <p>{{ $profile.about.introduction }}</p>
+                <blockquote class="about-quote">
+                    "{{ $profile.about.quote }}"
+                </blockquote>
+                <div class="about-hobbies">
+                    <h3>Sở thích:</h3>
+                    <div class="hobbies-list">
+                        {{ range $profile.about.hobbies }}
+                        <span class="hobby-tag">{{ . }}</span>
+                        {{ end }}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="about-section">
+            <h2 class="section-heading">
+                <span class="section-icon">🎓</span>
+                Học vấn
+            </h2>
+            <div class="education-list">
+                {{ range $profile.education }}
+                <div class="education-item">
+                    <div class="education-period">{{ .period }}</div>
+                    <div class="education-content">
+                        <h3 class="education-school">{{ .school }}</h3>
+                        <p class="education-degree">{{ .degree }} - {{ .major }}</p>
+                        <p class="education-achievement">{{ .achievement }}</p>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="about-section">
+            <h2 class="section-heading">
+                <span class="section-icon">💻</span>
+                Kỹ năng
+            </h2>
+            <div class="skills-grid">
+                {{ range $profile.skills }}
+                <div class="skill-item">{{ . }}</div>
+                {{ end }}
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="about-section">
+            <h2 class="section-heading">
+                <span class="section-icon">📸</span>
+                Ảnh về tôi
+            </h2>
+            <div class="gallery-grid">
+                {{ range $profile.gallery }}
+                <div class="gallery-item">
+                    <img src="{{ .image }}" alt="{{ .caption }}">
+                    <p class="gallery-caption">{{ .caption }}</p>
+                </div>
+                {{ end }}
+            </div>
+        </section>
+
+        <!-- Community Section -->
+        <section class="about-section community-section">
+            <h2 class="section-heading">
+                <span class="section-icon">🤝</span>
+                {{ $profile.community.title }}
+            </h2>
+            <div class="community-content">
+                <p class="community-text">{{ $profile.community.content }}</p>
+                <div class="community-activities">
+                    <h3>Hoạt động cộng đồng:</h3>
+                    <ul>
+                        {{ range $profile.community.activities }}
+                        <li>{{ . }}</li>
+                        {{ end }}
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="about-section contact-section">
+            <h2 class="section-heading">
+                <span class="section-icon">📧</span>
+                Thông tin liên hệ
+            </h2>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div class="contact-info">
+                        <h4>Email</h4>
+                        <p><a href="mailto:{{ $profile.contact.email }}">{{ $profile.contact.email }}</a></p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div class="contact-info">
+                        <h4>Điện thoại</h4>
+                        <p>{{ $profile.contact.phone }}</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-info">
+                        <h4>Địa chỉ</h4>
+                        <p>{{ $profile.contact.location }}</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🌐</div>
+                    <div class="contact-info">
+                        <h4>Website</h4>
+                        <p><a href="{{ $profile.contact.website }}" target="_blank">{{ $profile.contact.website }}</a></p>
+                    </div>
+                </div>
+            </div>
+            <p class="contact-availability">{{ $profile.contact.availability }}</p>
+        </section>
+
+        <!-- Social Links -->
+        <section class="about-section">
+            <h2 class="section-heading">
+                <span class="section-icon">🔗</span>
+                Kết nối với tôi
+            </h2>
+            <div class="social-links-large">
+                {{ with $profile.social.github }}
+                <a href="{{ . }}" target="_blank" class="social-button">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    GitHub
+                </a>
+                {{ end }}
+                
+                {{ with $profile.social.linkedin }}
+                <a href="{{ . }}" target="_blank" class="social-button">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                    LinkedIn
+                </a>
+                {{ end }}
+                
+                {{ with $profile.social.facebook }}
+                <a href="{{ . }}" target="_blank" class="social-button">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
+                    </svg>
+                    Facebook
+                </a>
+                {{ end }}
+                
+                {{ with $profile.social.email }}
+                <a href="mailto:{{ . }}" class="social-button">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/>
+                    </svg>
+                    Email
+                </a>
+                {{ end }}
+            </div>
+        </section>
+
+    </div>
+</div>
+
+<style>
+.about-page {
+    padding: 3rem 0;
+    background: #f9fafb;
+}
+
+/* Hero Section */
+.about-hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 4rem 2rem;
+    border-radius: 20px;
+    margin-bottom: 3rem;
+}
+
+.about-hero-content {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 3rem;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.about-avatar-large {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 6px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.about-avatar-large img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.about-hero-text h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.about-title {
+    font-size: 1.5rem;
+    opacity: 0.9;
+    margin-bottom: 1rem;
+}
+
+.about-bio {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    opacity: 0.95;
+}
+
+/* Sections */
+.about-section {
+    background: white;
+    padding: 3rem;
+    border-radius: 16px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.section-heading {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #111;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.section-icon {
+    font-size: 2.5rem;
+}
+
+/* About Intro */
+.about-intro p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 2rem;
+}
+
+.about-quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #3b82f6;
+    border-left: 4px solid #3b82f6;
+    padding-left: 2rem;
+    margin: 2rem 0;
+}
+
+.about-hobbies h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.hobbies-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.hobby-tag {
+    background: #f3f4f6;
+    padding: 0.5rem 1.2rem;
+    border-radius: 20px;
+    font-weight: 500;
+    color: #555;
+    border: 2px solid #e5e7eb;
+}
+
+/* Education */
+.education-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.education-item {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid #f3f4f6;
+}
+
+.education-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.education-period {
+    font-weight: 600;
+    color: #3b82f6;
+    font-size: 1.1rem;
+}
+
+.education-school {
+    font-size: 1.5rem;
+    color: #111;
+    margin-bottom: 0.5rem;
+}
+
+.education-degree {
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.education-achievement {
+    color: #3b82f6;
+    font-weight: 600;
+}
+
+/* Skills */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.skill-item {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1rem;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+/* Gallery */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.gallery-item {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.gallery-caption {
+    padding: 1rem;
+    background: #f9fafb;
+    text-align: center;
+    color: #555;
+    font-weight: 500;
+}
+
+/* Community */
+.community-section {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    border: 2px solid #667eea;
+}
+
+.community-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 2rem;
+}
+
+.community-activities h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.community-activities ul {
+    list-style: none;
+    padding: 0;
+}
+
+.community-activities li {
+    padding: 0.8rem 0;
+    padding-left: 2rem;
+    position: relative;
+    color: #555;
+    font-size: 1.1rem;
+}
+
+.community-activities li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #3b82f6;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+/* Contact */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.contact-item {
+    display: flex;
+    gap: 1rem;
+    align-items: start;
+}
+
+.contact-icon {
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    background: #f3f4f6;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-info h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.contact-info p {
+    color: #666;
+}
+
+.contact-info a {
+    color: #3b82f6;
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+.contact-availability {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #3b82f6;
+    font-weight: 600;
+    padding: 1.5rem;
+    background: rgba(59, 130, 246, 0.1);
+    border-radius: 12px;
+}
+
+/* Social Links */
+.social-links-large {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.social-button {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+}
+
+.social-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .about-hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .about-avatar-large {
+        margin: 0 auto;
+    }
+    
+    .education-item {
+        grid-template-columns: 1fr;
+    }
+    
+    .about-section {
+        padding: 2rem 1.5rem;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+{{ end }}

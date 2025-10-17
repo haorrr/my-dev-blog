@@ -1,0 +1,32 @@
+{{ define "main" }}
+
+<article class="single-post">
+    <div class="container">
+        <header class="post-header">
+            {{ if .Params.image }}
+            <div class="post-featured-image">
+                <img src="{{ .Params.image }}" alt="{{ .Title }}">
+            </div>
+            {{ end }}
+            
+            <div class="post-meta">
+                <span class="post-date">{{ .Date.Format "02/01/2006" }}</span>
+                {{ with .Params.category }}
+                <span class="post-category">{{ . }}</span>
+                {{ end }}
+            </div>
+            
+            <h1 class="post-title">{{ .Title }}</h1>
+        </header>
+        
+        <div class="post-content">
+            {{ .Content }}
+        </div>
+        
+        <footer class="post-footer">
+            <a href="/blog/" class="back-link">← Quay lại danh sách bài viết</a>
+        </footer>
+    </div>
+</article>
+
+{{ end }}
