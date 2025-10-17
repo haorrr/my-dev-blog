@@ -2,7 +2,7 @@
 title: "Asynchronous JavaScript - Callbacks, Promises, Async/Await"
 date: 2025-10-17
 category: "JavaScript"
-image: "/images/jsasync.jpg"
+image: "images/jsasync.jpg"
 description: "Lập trình bất đồng bộ là khái niệm quan trọng trong JavaScript. Hiểu về Event Loop, vượt qua Callback Hell với Promises, và sử dụng Async/Await để viết code clean hơn. Bao gồm Promise.all(), Promise.race() và error handling."
 ---
 

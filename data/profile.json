@@ -1,52 +1,40 @@
 {
   "name": "Võ Hoàn Hảo",
   "title": "Full Stack Developer",
-  "avatar": "/images/profile.jpg",
-  "bio": "Là một Developer đam mê công nghệ với hơn 3 năm kinh nghiệm trong phát triển ứng dụng web. Chuyên sâu về Java Backend và JavaScript Frontend. Luôn học hỏi và chia sẻ kiến thức với cộng đồng lập trình viên.",
+  "avatar": "images/profile.jpg",
+  "bio": "Developer đam mê công nghệ với hơn 3 năm kinh nghiệm phát triển ứng dụng web. Mạnh về Java Backend và JavaScript Frontend, luôn học hỏi và chia sẻ kiến thức với cộng đồng.",
   "about": {
-    "introduction": "Xin chào! Tôi là một lập trình viên đam mê công nghệ và yêu thích giải quyết vấn đề thông qua code. Tôi tin rằng công nghệ có thể thay đổi thế giới và luôn cố gắng học hỏi những điều mới mỗi ngày.",
+    "introduction": "Xin chào! Tôi là lập trình viên yêu thích giải quyết vấn đề bằng code. Tôi tin công nghệ có thể tạo ra thay đổi tích cực và luôn chủ động học những điều mới mỗi ngày.",
     "hobbies": ["Lập trình", "Đọc sách công nghệ", "Chơi game", "Du lịch", "Nghe nhạc"],
     "quote": "Code is poetry written in logic."
   },
   "education": [
     {
-      "school": "Đại học Công Nghệ Thành Phố Hồ Chí Minh",
+      "school": "Đại học Công Nghệ TP. Hồ Chí Minh (HUTECH)",
       "degree": "Công nghệ Thông tin",
       "period": "2022 - 2026",
-      "major": "Công Nghệ Phần Mềm"
+      "major": "Công nghệ Phần mềm"
     }
   ],
   "contact": {
     "email": "vohao01012000@gmail.com",
     "phone": "+84 392 447 665",
-    "location": "TP Hồ Chí Minh, Việt Nam",
-    "availability": "Sẵn sàng cho tất cả dự án freelance"
+    "location": "TP. Hồ Chí Minh, Việt Nam",
+    "availability": "Sẵn sàng nhận dự án freelance"
   },
   "gallery": [
-    {
-      "image": "/images/gallery/coding.jpg",
-      "caption": "Coding tại văn phòng"
-    },
-    {
-      "image": "/images/gallery/conference.jpg",
-      "caption": "Tham dự hội thảo công nghệ"
-    },
-    {
-      "image": "/images/gallery/team.jpg",
-      "caption": "Cùng team dự án"
-    },
-    {
-      "image": "/images/gallery/workshop.jpg",
-      "caption": "Workshop về React"
-    }
+    { "image": "images/gallery/coding.jpg", "caption": "Coding tại văn phòng" },
+    { "image": "images/gallery/conference.jpg", "caption": "Tham dự hội thảo công nghệ" },
+    { "image": "images/gallery/team.jpg", "caption": "Cùng team dự án" },
+    { "image": "images/gallery/workshop.jpg", "caption": "Workshop về React" }
   ],
   "community": {
-    "title": "Chia sẻ về Cộng đồng IT",
-    "content": "Cộng đồng IT Việt Nam đang ngày càng phát triển mạnh mẽ với nhiều developer tài năng. Tôi tin rằng sức mạnh của cộng đồng chính là sự chia sẻ và hỗ trợ lẫn nhau. Thông qua blog này, tôi mong muốn đóng góp một phần nhỏ bé vào việc lan tỏa kiến thức, giúp đỡ những bạn mới bắt đầu và cùng nhau phát triển.",
+    "title": "Chia sẻ cùng Cộng đồng IT",
+    "content": "Cộng đồng IT Việt Nam đang phát triển mạnh mẽ với nhiều developer tài năng. Tôi tin sức mạnh của cộng đồng đến từ chia sẻ và hỗ trợ lẫn nhau. Qua blog này, tôi mong muốn lan tỏa kiến thức, giúp các bạn mới bắt đầu và cùng nhau tiến bộ.",
     "activities": [
-      "Tham gia các buổi meetup công nghệ",
+      "Tham gia meetup công nghệ",
       "Mentor cho sinh viên và junior developers",
-      "Đóng góp cho các dự án open source",
+      "Đóng góp dự án open source",
       "Chia sẻ kiến thức qua blog và video"
     ]
   },

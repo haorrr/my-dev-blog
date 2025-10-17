@@ -2,7 +2,7 @@
 title: "ES6+ Features - JavaScript hiện đại"
 date: 2025-10-14
 category: "JavaScript"
-image: "/images/jsES6.jpg"
+image: "images/jsES6.jpg"
 description: "ES6+ đã cách mạng hóa JavaScript với các tính năng như Let/Const, Arrow Functions, Template Literals, Destructuring, Spread Operator, Classes, Modules, Optional Chaining và nhiều hơn nữa. Làm chủ JavaScript hiện đại!"
 ---
 

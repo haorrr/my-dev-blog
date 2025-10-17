@@ -2,7 +2,7 @@
 title: "DOM Manipulation - Tương tác với HTML bằng JavaScript"
 date: 2025-10-19
 category: "JavaScript"
-image: "/images/jsdom.jpg"
+image: "images/jsdom.jpg"
 description: "Document Object Model (DOM) là cầu nối giữa JavaScript và HTML, cho phép tạo trang web động và tương tác. Học cách selecting elements, manipulating content, styling, event handling và xây dựng Todo List thực tế."
 ---
 

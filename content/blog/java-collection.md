@@ -2,7 +2,7 @@
 title: "Java Collections Framework - Quản lý dữ liệu hiệu quả"
 date: 2025-10-13
 category: "Java"
-image: "/images/javacollection.jpg"
+image: "images/javacollection.jpg"
 description: "Java Collections Framework cung cấp các cấu trúc dữ liệu mạnh mẽ như ArrayList, LinkedList, HashSet, HashMap, Queue. Tìm hiểu cách sử dụng, so sánh hiệu suất và best practices khi làm việc với Collections."
 ---
 
