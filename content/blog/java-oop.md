@@ -6,22 +6,36 @@ image: "/images/javaoop.jpg"
 description: "Lập trình hướng đối tượng (OOP) là nền tảng của Java. Nắm vững 4 nguyên lý cơ bản: Encapsulation (Đóng gói), Inheritance (Kế thừa), Polymorphism (Đa hình), và Abstraction (Trừu tượng) với ví dụ thực tế."
 ---
 
-Lập trình hướng đối tượng (Object-Oriented Programming - OOP) là paradigm lập trình quan trọng nhất trong Java.
+Lập trình hướng đối tượng (Object-Oriented Programming - OOP) là linh hồn của ngôn ngữ Java.  
+Nhờ có OOP, Java giúp việc phát triển phần mềm trở nên có tổ chức, dễ mở rộng và gần gũi hơn với cách con người mô hình hóa thế giới thực.  
+Trong bài viết này, chúng ta sẽ tìm hiểu 4 nguyên lý cơ bản của OOP trong Java cùng với ví dụ cụ thể.
 
-## 4 Nguyên lý cơ bản của OOP
+---
 
-### 1. Encapsulation (Đóng gói)
+## 1. Khái niệm lập trình hướng đối tượng
 
-Encapsulation là việc ẩn giấu dữ liệu và chỉ cho phép truy cập thông qua các methods.
+OOP là phương pháp lập trình tổ chức chương trình dựa trên **đối tượng (object)** – những thực thể có dữ liệu (thuộc tính) và hành vi (phương thức).  
+Thay vì viết toàn bộ code trong các hàm rời rạc, Java cho phép ta nhóm logic liên quan lại với nhau thành các class – giúp chương trình rõ ràng, dễ bảo trì và tái sử dụng.
+
+---
+
+## 2. Các nguyên lý cơ bản của OOP trong Java
+
+### 2.1. Encapsulation – Đóng gói
+
+Đóng gói nghĩa là ẩn giấu dữ liệu bên trong đối tượng và chỉ cho phép truy cập thông qua các phương thức công khai.  
+Cách làm này giúp bảo vệ dữ liệu khỏi bị thay đổi trực tiếp, đồng thời đảm bảo tính an toàn và toàn vẹn của đối tượng.
+
+Ví dụ:
 
 ```java
 public class BankAccount {
-    private double balance; // private - ẩn giấu dữ liệu
-    
+    private double balance; // không thể truy cập trực tiếp từ bên ngoài
+
     public double getBalance() {
         return balance;
     }
-    
+
     public void deposit(double amount) {
         if (amount > 0) {
             balance += amount;
@@ -29,17 +43,17 @@ public class BankAccount {
     }
 }
 ```
+Trong ví dụ trên, biến balance được ẩn đi bằng từ khóa private, và chỉ được truy cập thông qua các phương thức getBalance() và deposit().
 
-**Lợi ích**: Bảo vệ dữ liệu, dễ bảo trì, tăng tính linh hoạt
+### 2.2. Inheritance – Kế thừa
+Kế thừa cho phép một class con tái sử dụng lại thuộc tính và phương thức của class cha.
+Điều này giúp giảm lặp code và cho phép mở rộng chức năng dễ dàng.
 
-### 2. Inheritance (Kế thừa)
+Ví dụ:
 
-Cho phép class con kế thừa thuộc tính và methods từ class cha.
-
-```java
 public class Animal {
     protected String name;
-    
+
     public void eat() {
         System.out.println("Đang ăn...");
     }
@@ -50,31 +64,25 @@ public class Dog extends Animal {
         System.out.println("Gâu gâu!");
     }
 }
-```
+Class Dog kế thừa từ Animal, nhờ đó có thể sử dụng lại phương thức eat() mà không cần viết lại.
 
-**Lợi ích**: Tái sử dụng code, tạo cấu trúc phân cấp
+### 2.3. Polymorphism – Đa hình
+Đa hình cho phép cùng một hành động có thể có nhiều cách thực hiện khác nhau tùy theo đối tượng cụ thể.
+Trong Java, đa hình thể hiện qua method overloading (đa hình khi biên dịch) và method overriding (đa hình khi chạy).
 
-### 3. Polymorphism (Đa hình)
+Ví dụ về Overloading:
 
-Một object có thể có nhiều hình thái khác nhau.
-
-**Method Overloading** (Compile-time polymorphism):
-
-```java
 public class Calculator {
     public int add(int a, int b) {
         return a + b;
     }
-    
+
     public double add(double a, double b) {
         return a + b;
     }
 }
-```
+Ví dụ về Overriding:
 
-**Method Overriding** (Runtime polymorphism):
-
-```java
 public class Animal {
     public void makeSound() {
         System.out.println("Some sound");
@@ -87,20 +95,16 @@ public class Cat extends Animal {
         System.out.println("Meow");
     }
 }
-```
+Cả Cat và Animal đều có makeSound(), nhưng hành vi của mỗi class lại khác nhau – minh chứng cho tính đa hình.
 
-**Lợi ích**: Code linh hoạt, dễ mở rộng
+### 2.4. Abstraction – Trừu tượng
+Trừu tượng giúp che giấu chi tiết triển khai phức tạp, chỉ để lộ phần cần thiết cho người dùng. hỗ trợ trừu tượng thông qua abstract class và interface.
 
-### 4. Abstraction (Trừu tượng)
+Ví dụ với abstract class:
 
-Ẩn giấu chi tiết implementation, chỉ hiển thị chức năng cần thiết.
-
-**Abstract Class**:
-
-```java
 public abstract class Shape {
     abstract double calculateArea();
-    
+
     public void display() {
         System.out.println("Area: " + calculateArea());
     }
@@ -108,17 +112,19 @@ public abstract class Shape {
 
 public class Circle extends Shape {
     private double radius;
-    
+
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+
     @Override
     double calculateArea() {
         return Math.PI * radius * radius;
     }
 }
-```
+Ví dụ với interface:
 
-**Interface**:
 
-```java
 public interface Drawable {
     void draw();
 }
@@ -129,59 +135,53 @@ public class Rectangle implements Drawable {
         System.out.println("Drawing rectangle");
     }
 }
-```
+Nhờ cơ chế trừu tượng, ta có thể dễ dàng mở rộng chương trình mà không cần sửa đổi lớp hiện có.
 
-## Class và Object
+## 3. Class, Object và Constructor
+### 3.1. Class và Object
+Class là bản thiết kế (blueprint) cho các đối tượng.
 
-**Class** là blueprint (bản thiết kế) để tạo objects.
+Object là thể hiện (instance) của class.
 
-**Object** là instance của class.
+Ví dụ:
 
-```java
+
 public class Car {
     String brand;
-    String model;
     int year;
-    
+
     public void start() {
         System.out.println("Car is starting");
     }
 }
 
-// Tạo object
 Car myCar = new Car();
 myCar.brand = "Toyota";
 myCar.start();
-```
+### 3.2. Constructor
+Là phương thức đặc biệt được gọi khi tạo đối tượng.
+Constructor có thể có tham số hoặc không.
 
-## Constructor
 
-Constructor là method đặc biệt được gọi khi tạo object.
-
-```java
 public class Person {
     private String name;
     private int age;
-    
-    // Default constructor
+
+    // Constructor mặc định
     public Person() {
         this.name = "Unknown";
         this.age = 0;
     }
-    
-    // Parameterized constructor
+
+    // Constructor có tham số
     public Person(String name, int age) {
         this.name = name;
         this.age = age;
     }
 }
-```
 
-## Access Modifiers
 
-- **private**: Chỉ truy cập trong class
-- **default**: Truy cập trong package
-- **protected**: Truy cập trong package và subclasses
-- **public**: Truy cập mọi nơi
-
-OOP giúp code có cấu trúc tốt hơn, dễ bảo trì và mở rộng, đây là nền tảng quan trọng để trở thành Java developer giỏi.
+## 4. Kết luận
+Lập trình hướng đối tượng là nền tảng giúp Java mạnh mẽ, dễ mở rộng và bảo trì.
+Nắm vững bốn nguyên lý Encapsulation, Inheritance, Polymorphism và Abstraction không chỉ giúp bạn viết code tốt hơn, mà còn hình thành tư duy lập trình chuyên nghiệp.
+Khi bạn hiểu OOP, bạn đã nắm được “linh hồn” của Java và sẵn sàng bước vào các khái niệm nâng cao hơn như thiết kế mô hình, framework và cấu trúc phần mềm thực tế.
