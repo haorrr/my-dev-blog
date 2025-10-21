@@ -1,3 +1,4 @@
+
 {{ define "main" }}
 {{ $profile := site.Data.profile }}
 
@@ -18,7 +19,7 @@
                     <!-- Quick Stats -->
                     <div class="quick-stats">
                         <div class="stat-item">
-                            <span class="stat-number">5+</span>
+                            <span class="stat-number">3+</span>
                             <span class="stat-label">Năm kinh nghiệm</span>
                         </div>
                         <div class="stat-item">
@@ -33,14 +34,14 @@
                     
                     <!-- Download CV Button -->
                     <div class="cv-actions">
-                        <a href="/cv/Vo-Hoan-Hao-CV.pdf" download class="btn-download-cv">
+                        <button onclick="downloadCV()" class="btn-download-cv">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                                 <polyline points="7 10 12 15 17 10"></polyline>
                                 <line x1="12" y1="15" x2="12" y2="3"></line>
                             </svg>
                             Tải CV (PDF)
-                        </a>
+                        </button>
                         <a href="#contact" class="btn-contact">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
@@ -308,30 +309,30 @@
                 <span class="section-icon">📜</span>
                 Chứng chỉ & Giải thưởng
             </h2>
-            <div class="cert-grid">
-                <div class="cert-card">
-                    <div class="cert-badge">🏆</div>
-                    <h4>AWS Certified Solutions Architect</h4>
-                    <p class="cert-issuer">Amazon Web Services</p>
-                    <p class="cert-date">2023</p>
+            <div class="cert-images-grid">
+                <div class="cert-image-card">
+                    <img src="/images/cc1.jpg" alt="JavaScript Essentials 2 - Cisco Networking Academy">
+                    <div class="cert-overlay">
+                        <h4>JavaScript Essentials 2</h4>
+                        <p>Cisco Networking Academy</p>
+                        <p class="cert-date">Oct 14, 2025</p>
+                    </div>
                 </div>
-                <div class="cert-card">
-                    <div class="cert-badge">☕</div>
-                    <h4>Oracle Certified Java Programmer</h4>
-                    <p class="cert-issuer">Oracle</p>
-                    <p class="cert-date">2022</p>
+                <div class="cert-image-card">
+                    <img src="/images/cc2.jpg" alt="JavaScript Essentials 1 - Cisco Networking Academy">
+                    <div class="cert-overlay">
+                        <h4>JavaScript Essentials 1</h4>
+                        <p>Cisco Networking Academy</p>
+                        <p class="cert-date">Sep 24, 2025</p>
+                    </div>
                 </div>
-                <div class="cert-card">
-                    <div class="cert-badge">🔐</div>
-                    <h4>Certified Ethical Hacker (CEH)</h4>
-                    <p class="cert-issuer">EC-Council</p>
-                    <p class="cert-date">2023</p>
-                </div>
-                <div class="cert-card">
-                    <div class="cert-badge">📊</div>
-                    <h4>Scrum Master Certified</h4>
-                    <p class="cert-issuer">Scrum Alliance</p>
-                    <p class="cert-date">2021</p>
+                <div class="cert-image-card">
+                    <img src="/images/cc3.jpg" alt="Networking Basics - Cisco Networking Academy">
+                    <div class="cert-overlay">
+                        <h4>Networking Basics</h4>
+                        <p>Cisco Networking Academy</p>
+                        <p class="cert-date">Sep 19, 2025</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -562,6 +563,75 @@
     </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script>
+function downloadCV() {
+    // Hiển thị loading
+    const btn = event.target.closest('.btn-download-cv');
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<span>Đang tạo PDF...</span>';
+    btn.disabled = true;
+    
+    // Lấy element cần chuyển thành PDF
+    const element = document.querySelector('.about-page');
+    
+    // Ẩn các nút không cần thiết khi in
+    const cvActions = document.querySelectorAll('.cv-actions');
+    const contactForm = document.querySelector('.contact-form-container');
+    const socialButtons = document.querySelector('.social-buttons');
+    
+    cvActions.forEach(el => el.style.display = 'none');
+    if (contactForm) contactForm.style.display = 'none';
+    if (socialButtons) socialButtons.style.display = 'none';
+    
+    // Cấu hình PDF
+    const opt = {
+        margin: [10, 10, 10, 10],
+        filename: 'CV-Vo-Hoan-Hao.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { 
+            scale: 2,
+            useCORS: true,
+            logging: false,
+            letterRendering: true
+        },
+        jsPDF: { 
+            unit: 'mm', 
+            format: 'a4', 
+            orientation: 'portrait' 
+        },
+        pagebreak: { 
+            mode: ['avoid-all', 'css', 'legacy'],
+            before: '.about-section'
+        }
+    };
+    
+    // Tạo PDF
+    html2pdf().set(opt).from(element).save().then(() => {
+        // Khôi phục hiển thị
+        cvActions.forEach(el => el.style.display = 'flex');
+        if (contactForm) contactForm.style.display = 'block';
+        if (socialButtons) socialButtons.style.display = 'flex';
+        
+        // Khôi phục nút
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+    }).catch(error => {
+        console.error('Lỗi khi tạo PDF:', error);
+        alert('Có lỗi xảy ra khi tạo PDF. Vui lòng thử lại!');
+        
+        // Khôi phục hiển thị
+        cvActions.forEach(el => el.style.display = 'flex');
+        if (contactForm) contactForm.style.display = 'block';
+        if (socialButtons) socialButtons.style.display = 'flex';
+        
+        // Khôi phục nút
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+    });
+}
+</script>
+
 <style>
 /* Reset & Base */
 * {
@@ -682,6 +752,9 @@
     text-decoration: none;
     transition: all 0.3s ease;
     border: 2px solid transparent;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
 }
 
 .btn-download-cv {
@@ -689,9 +762,14 @@
     color: #667eea;
 }
 
-.btn-download-cv:hover {
+.btn-download-cv:hover:not(:disabled) {
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+}
+
+.btn-download-cv:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
 }
 
 .btn-contact {
@@ -981,46 +1059,71 @@
     font-size: 1.5rem;
 }
 
-/* Certifications */
-.cert-grid {
+/* Certifications - Image Style */
+.cert-images-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
 }
 
-.cert-card {
-    text-align: center;
-    padding: 2rem;
-    background: linear-gradient(135deg, #f5f7fa 0%, #e8eef5 100%);
+.cert-image-card {
+    position: relative;
     border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
+    cursor: pointer;
+    background: white;
 }
 
-.cert-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+.cert-image-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
 }
 
-.cert-badge {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+.cert-image-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
 }
 
-.cert-card h4 {
+.cert-image-card:hover img {
+    transform: scale(1.05);
+}
+
+.cert-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 50%, transparent 100%);
+    color: white;
+    padding: 2rem 1.5rem 1.5rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.cert-image-card:hover .cert-overlay {
+    transform: translateY(0);
+}
+
+.cert-overlay h4 {
     font-size: 1.1rem;
-    color: #111;
     margin-bottom: 0.5rem;
+    color: white;
 }
 
-.cert-issuer {
-    color: #667eea;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-}
-
-.cert-date {
-    color: #777;
+.cert-overlay p {
     font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+    opacity: 0.9;
+}
+
+.cert-overlay .cert-date {
+    font-size: 0.85rem;
+    opacity: 0.8;
+    font-style: italic;
 }
 
 /* Projects Showcase */
@@ -1236,6 +1339,7 @@
     color: #555;
     margin: 0;
 }
+
 /* Availability Badge */
 .availability-badge {
     display: inline-flex;
@@ -1422,6 +1526,10 @@
     .community-stats {
         grid-template-columns: repeat(2, 1fr);
     }
+    
+    .cert-images-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
 }
 
 @media (max-width: 768px) {
@@ -1482,7 +1590,7 @@
     }
     
     .education-grid,
-    .cert-grid,
+    .cert-images-grid,
     .projects-grid {
         grid-template-columns: 1fr;
     }
@@ -1624,28 +1732,6 @@
     outline: 3px solid #667eea;
     outline-offset: 2px;
 }
+</style>
 
-/* Dark mode support (optional) */
-@media (prefers-color-scheme: dark) {
-    /* Uncomment to enable dark mode */
-    /*
-    .about-page {
-        background: #1a1a1a;
-        color: #fff;
-    }
-    
-    .about-section {
-        background: #2a2a2a;
-        color: #fff;
-    }
-    
-    .timeline-content,
-    .education-card,
-    .cert-card,
-    .hobby-card,
-    .activity-list li {
-        background: #333;
-        color: #fff;
-    }
-    */
-}
+{{ end }}
