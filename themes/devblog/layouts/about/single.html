@@ -1,161 +1,523 @@
 {{ define "main" }}
-{{ $profile := .Site.Data.profile }}
+{{ $profile := site.Data.profile }}
 
 <div class="about-page">
     <div class="container">
         
-        <!-- Hero Section -->
+        <!-- Hero Section with Avatar -->
         <section class="about-hero">
             <div class="about-hero-content">
                 <div class="about-avatar-large">
-                    <img src="{{ $profile.avatar | relURL }}" alt="{{ $profile.name }}">
+                    <img src="{{ $profile.avatar }}" alt="{{ $profile.name }}">
                 </div>
                 <div class="about-hero-text">
                     <h1>{{ $profile.name }}</h1>
                     <p class="about-title">{{ $profile.title }}</p>
                     <p class="about-bio">{{ $profile.bio }}</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Me Section -->
-        <section class="about-section">
-            <h2 class="section-heading">
-                <span class="section-icon">👋</span>
-                Về tôi
-            </h2>
-            <div class="about-intro">
-                <p>{{ $profile.about.introduction }}</p>
-                <blockquote class="about-quote">
-                    "{{ $profile.about.quote }}"
-                </blockquote>
-                <div class="about-hobbies">
-                    <h3>Sở thích:</h3>
-                    <div class="hobbies-list">
-                        {{ range $profile.about.hobbies }}
-                        <span class="hobby-tag">{{ . }}</span>
-                        {{ end }}
+                    
+                    <!-- Quick Stats -->
+                    <div class="quick-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">5+</span>
+                            <span class="stat-label">Năm kinh nghiệm</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Dự án hoàn thành</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">100+</span>
+                            <span class="stat-label">Bài viết chia sẻ</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Download CV Button -->
+                    <div class="cv-actions">
+                        <a href="/cv/Vo-Hoan-Hao-CV.pdf" download class="btn-download-cv">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            Tải CV (PDF)
+                        </a>
+                        <a href="#contact" class="btn-contact">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                            Liên hệ
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Education Section -->
-        <section class="about-section">
+        <!-- About Introduction -->
+        <section class="about-section about-intro">
+            <h2 class="section-heading">
+                <span class="section-icon">👨‍💻</span>
+                Giới thiệu
+            </h2>
+            <p>{{ $profile.about.introduction }}</p>
+            <blockquote class="about-quote">
+                "{{ $profile.about.quote }}"
+            </blockquote>
+        </section>
+
+        <!-- Work Experience -->
+        <section class="about-section experience-section">
+            <h2 class="section-heading">
+                <span class="section-icon">💼</span>
+                Kinh nghiệm làm việc
+            </h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3>Senior Full-Stack Developer</h3>
+                            <span class="timeline-company">Tech Solutions Vietnam</span>
+                            <span class="timeline-date">2022 - Hiện tại</span>
+                        </div>
+                        <ul class="timeline-responsibilities">
+                            <li>Phát triển và maintain hệ thống e-commerce với 1M+ users</li>
+                            <li>Lead team 5 developers, áp dụng Agile/Scrum methodology</li>
+                            <li>Tối ưu performance, giảm 40% load time</li>
+                            <li>Implement CI/CD pipeline với GitHub Actions và Docker</li>
+                        </ul>
+                        <div class="timeline-tech">
+                            <span class="tech-tag">Java Spring Boot</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">AWS</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3>Full-Stack Developer</h3>
+                            <span class="timeline-company">Digital Agency Co.</span>
+                            <span class="timeline-date">2020 - 2022</span>
+                        </div>
+                        <ul class="timeline-responsibilities">
+                            <li>Phát triển web applications cho clients trong và ngoài nước</li>
+                            <li>Xây dựng RESTful APIs và integrate với third-party services</li>
+                            <li>Responsive design và cross-browser compatibility</li>
+                            <li>Code review và mentor junior developers</li>
+                        </ul>
+                        <div class="timeline-tech">
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">Docker</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3>Junior Developer</h3>
+                            <span class="timeline-company">Startup X</span>
+                            <span class="timeline-date">2019 - 2020</span>
+                        </div>
+                        <ul class="timeline-responsibilities">
+                            <li>Phát triển features mới cho sản phẩm SaaS</li>
+                            <li>Bug fixing và maintain codebase</li>
+                            <li>Viết unit tests và documentation</li>
+                            <li>Collaborate với designers và PMs</li>
+                        </ul>
+                        <div class="timeline-tech">
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">HTML/CSS</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">Git</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section class="about-section education-section">
             <h2 class="section-heading">
                 <span class="section-icon">🎓</span>
                 Học vấn
             </h2>
-            <div class="education-list">
+            <div class="education-grid">
                 {{ range $profile.education }}
-                <div class="education-item">
-                    <div class="education-period">{{ .period }}</div>
-                    <div class="education-content">
-                        <h3 class="education-school">{{ .school }}</h3>
-                        <p class="education-degree">{{ .degree }} - {{ .major }}</p>
-                        <p class="education-achievement">{{ .achievement }}</p>
+                <div class="education-card">
+                    <div class="education-icon">🏛️</div>
+                    <h3>{{ .school }}</h3>
+                    <p class="education-degree">{{ .degree }} - {{ .major }}</p>
+                    <p class="education-period">{{ .period }}</p>
+                    <p class="education-achievement">🏆 {{ .achievement }}</p>
+                </div>
+                {{ end }}
+            </div>
+        </section>
+
+        <!-- Skills & Expertise -->
+        <section class="about-section skills-section">
+            <h2 class="section-heading">
+                <span class="section-icon">🛠️</span>
+                Kỹ năng & Chuyên môn
+            </h2>
+            
+            <div class="skills-category">
+                <h3>💻 Programming Languages</h3>
+                <div class="skills-bars">
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span>Java</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-progress-bar" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span>JavaScript/TypeScript</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-progress-bar" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span>Python</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-progress-bar" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span>SQL</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-progress-bar" style="width: 80%"></div>
+                        </div>
                     </div>
                 </div>
-                {{ end }}
+            </div>
+            
+            <div class="skills-category">
+                <h3>🎨 Frontend Technologies</h3>
+                <div class="tech-grid">
+                    <div class="tech-item">
+                        <span class="tech-icon">⚛️</span>
+                        <span>React</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">🟢</span>
+                        <span>Vue.js</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">🅰️</span>
+                        <span>Angular</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">🎨</span>
+                        <span>HTML5/CSS3</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">💨</span>
+                        <span>Tailwind CSS</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">📦</span>
+                        <span>Webpack</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skills-category">
+                <h3>⚙️ Backend & Databases</h3>
+                <div class="tech-grid">
+                    <div class="tech-item">
+                        <span class="tech-icon">🍃</span>
+                        <span>Spring Boot</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">🟩</span>
+                        <span>Node.js</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">🐘</span>
+                        <span>PostgreSQL</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">🍃</span>
+                        <span>MongoDB</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">🔴</span>
+                        <span>Redis</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">🔥</span>
+                        <span>Firebase</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skills-category">
+                <h3>☁️ DevOps & Cloud</h3>
+                <div class="tech-grid">
+                    <div class="tech-item">
+                        <span class="tech-icon">🐳</span>
+                        <span>Docker</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">☸️</span>
+                        <span>Kubernetes</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">☁️</span>
+                        <span>AWS</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">🔵</span>
+                        <span>Azure</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">⚡</span>
+                        <span>GitHub Actions</span>
+                    </div>
+                    <div class="tech-item">
+                        <span class="tech-icon">🔧</span>
+                        <span>Jenkins</span>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Skills Section -->
-        <section class="about-section">
+        <!-- Certifications -->
+        <section class="about-section certifications-section">
             <h2 class="section-heading">
-                <span class="section-icon">💻</span>
-                Kỹ năng
+                <span class="section-icon">📜</span>
+                Chứng chỉ & Giải thưởng
             </h2>
-            <div class="skills-grid">
-                {{ range $profile.skills }}
-                <div class="skill-item">{{ . }}</div>
-                {{ end }}
+            <div class="cert-grid">
+                <div class="cert-card">
+                    <div class="cert-badge">🏆</div>
+                    <h4>AWS Certified Solutions Architect</h4>
+                    <p class="cert-issuer">Amazon Web Services</p>
+                    <p class="cert-date">2023</p>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-badge">☕</div>
+                    <h4>Oracle Certified Java Programmer</h4>
+                    <p class="cert-issuer">Oracle</p>
+                    <p class="cert-date">2022</p>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-badge">🔐</div>
+                    <h4>Certified Ethical Hacker (CEH)</h4>
+                    <p class="cert-issuer">EC-Council</p>
+                    <p class="cert-date">2023</p>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-badge">📊</div>
+                    <h4>Scrum Master Certified</h4>
+                    <p class="cert-issuer">Scrum Alliance</p>
+                    <p class="cert-date">2021</p>
+                </div>
             </div>
         </section>
 
-        <!-- Gallery Section -->
-        <section class="about-section">
+        <!-- Projects Showcase -->
+        <section class="about-section projects-showcase">
             <h2 class="section-heading">
-                <span class="section-icon">📸</span>
-                Ảnh về tôi
+                <span class="section-icon">🚀</span>
+                Dự án nổi bật
             </h2>
-            <div class="gallery-grid">
-                {{ range $profile.gallery }}
-                <div class="gallery-item">
-                    <img src="{{ .image | relURL }}" alt="{{ .caption }}">
-                    <p class="gallery-caption">{{ .caption }}</p>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="/images/project-ecommerce.jpg" alt="E-commerce Platform">
+                    </div>
+                    <div class="project-content">
+                        <h4>E-commerce Platform</h4>
+                        <p>Hệ thống thương mại điện tử với 1M+ users, xử lý 10K+ orders/ngày</p>
+                        <div class="project-tech">
+                            <span>Spring Boot</span>
+                            <span>React</span>
+                            <span>PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="/images/project-cms.jpg" alt="CMS System">
+                    </div>
+                    <div class="project-content">
+                        <h4>Content Management System</h4>
+                        <p>CMS cho phép quản lý nội dung đa ngôn ngữ, SEO-friendly</p>
+                        <div class="project-tech">
+                            <span>Node.js</span>
+                            <span>Vue.js</span>
+                            <span>MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="/images/project-iot.jpg" alt="IoT Dashboard">
+                    </div>
+                    <div class="project-content">
+                        <h4>IoT Monitoring Dashboard</h4>
+                        <p>Dashboard theo dõi real-time cho hệ thống IoT với 1000+ devices</p>
+                        <div class="project-tech">
+                            <span>Python</span>
+                            <span>React</span>
+                            <span>InfluxDB</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hobbies & Interests -->
+        <section class="about-section hobbies-section">
+            <h2 class="section-heading">
+                <span class="section-icon">🎯</span>
+                Sở thích & Quan tâm
+            </h2>
+            <div class="hobbies-grid">
+                {{ range $profile.about.hobbies }}
+                <div class="hobby-card">
+                    <span class="hobby-icon">
+                        {{ if eq . "Đọc sách công nghệ" }}📚
+                        {{ else if eq . "Viết blog chia sẻ kiến thức" }}✍️
+                        {{ else if eq . "Tham gia hackathons" }}💻
+                        {{ else if eq . "Chơi game và phân tích game design" }}🎮
+                        {{ else if eq . "Nhiếp ảnh và chỉnh sửa ảnh" }}📸
+                        {{ else }}🎨{{ end }}
+                    </span>
+                    <p>{{ . }}</p>
                 </div>
                 {{ end }}
             </div>
         </section>
 
-        <!-- Community Section -->
+        <!-- Community & Open Source -->
         <section class="about-section community-section">
             <h2 class="section-heading">
                 <span class="section-icon">🤝</span>
                 {{ $profile.community.title }}
             </h2>
-            <div class="community-content">
-                <p class="community-text">{{ $profile.community.content }}</p>
-                <div class="community-activities">
-                    <h3>Hoạt động cộng đồng:</h3>
-                    <ul>
-                        {{ range $profile.community.activities }}
-                        <li>{{ . }}</li>
-                        {{ end }}
-                    </ul>
+            <p class="community-intro">{{ $profile.community.content }}</p>
+            
+            <div class="community-stats">
+                <div class="community-stat">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-value">500+</div>
+                    <div class="stat-label">GitHub Stars</div>
+                </div>
+                <div class="community-stat">
+                    <div class="stat-icon">🔀</div>
+                    <div class="stat-value">50+</div>
+                    <div class="stat-label">Open Source Contributions</div>
+                </div>
+                <div class="community-stat">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-value">10K+</div>
+                    <div class="stat-label">Community Members</div>
                 </div>
             </div>
+            
+            <ul class="activity-list">
+                {{ range $profile.community.activities }}
+                <li>{{ . }}</li>
+                {{ end }}
+            </ul>
         </section>
 
         <!-- Contact Section -->
-        <section class="about-section contact-section">
+        <section id="contact" class="about-section contact-section">
             <h2 class="section-heading">
                 <span class="section-icon">📧</span>
-                Thông tin liên hệ
+                Liên hệ với tôi
             </h2>
+            
             <div class="contact-grid">
-                <div class="contact-item">
-                    <div class="contact-icon">📧</div>
-                    <div class="contact-info">
-                        <h4>Email</h4>
-                        <p><a href="mailto:{{ $profile.contact.email }}">{{ $profile.contact.email }}</a></p>
+                <div class="contact-info">
+                    <h3>Thông tin liên hệ</h3>
+                    <div class="contact-items">
+                        <div class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <div>
+                                <strong>Email</strong>
+                                <a href="mailto:{{ $profile.contact.email }}">{{ $profile.contact.email }}</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📱</span>
+                            <div>
+                                <strong>Điện thoại</strong>
+                                <a href="tel:{{ $profile.contact.phone }}">{{ $profile.contact.phone }}</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📍</span>
+                            <div>
+                                <strong>Địa chỉ</strong>
+                                <p>{{ $profile.contact.location }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="availability-badge">
+                        <span class="status-dot"></span>
+                        {{ $profile.contact.availability }}
                     </div>
                 </div>
-                <div class="contact-item">
-                    <div class="contact-icon">📱</div>
-                    <div class="contact-info">
-                        <h4>Điện thoại</h4>
-                        <p>{{ $profile.contact.phone }}</p>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">📍</div>
-                    <div class="contact-info">
-                        <h4>Địa chỉ</h4>
-                        <p>{{ $profile.contact.location }}</p>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">🌐</div>
-                    <div class="contact-info">
-                        <h4>Website</h4>
-                        <p><a href="{{ $profile.contact.website }}" target="_blank">{{ $profile.contact.website }}</a></p>
-                    </div>
+                
+                <div class="contact-form-container">
+                    <h3>Gửi tin nhắn</h3>
+                    <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                        <div class="form-group">
+                            <label for="name">Họ tên</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Tiêu đề</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Nội dung</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Gửi tin nhắn</button>
+                    </form>
                 </div>
             </div>
-            <p class="contact-availability">{{ $profile.contact.availability }}</p>
         </section>
 
         <!-- Social Links -->
-        <section class="about-section">
+        <section class="about-section social-links-section">
             <h2 class="section-heading">
                 <span class="section-icon">🔗</span>
                 Kết nối với tôi
             </h2>
-            <div class="social-links-large">
+            <div class="social-buttons">
                 {{ with $profile.social.github }}
-                <a href="{{ . }}" target="_blank" class="social-button">
+                <a href="{{ . }}" target="_blank" rel="noopener" class="social-button github">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                     </svg>
@@ -163,17 +525,8 @@
                 </a>
                 {{ end }}
                 
-                {{ with $profile.social.linkedin }}
-                <a href="{{ . }}" target="_blank" class="social-button">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                    </svg>
-                    LinkedIn
-                </a>
-                {{ end }}
-                
                 {{ with $profile.social.facebook }}
-                <a href="{{ . }}" target="_blank" class="social-button">
+                <a href="{{ . }}" target="_blank" rel="noopener" class="social-button facebook">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
                     </svg>
@@ -181,8 +534,22 @@
                 </a>
                 {{ end }}
                 
+                <a href="https://www.linkedin.com/in/vohoanhao" target="_blank" rel="noopener" class="social-button linkedin">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/>
+                    </svg>
+                    LinkedIn
+                </a>
+                
+                <a href="https://twitter.com/vohoanhao" target="_blank" rel="noopener" class="social-button twitter">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                    </svg>
+                    Twitter
+                </a>
+                
                 {{ with $profile.social.email }}
-                <a href="mailto:{{ . }}" class="social-button">
+                <a href="mailto:{{ . }}" class="social-button email">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/>
                     </svg>
@@ -196,18 +563,33 @@
 </div>
 
 <style>
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .about-page {
     padding: 3rem 0;
-    background: #f9fafb;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
 }
 
 /* Hero Section */
 .about-hero {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
-    padding: 4rem 2rem;
-    border-radius: 20px;
+    padding: 4rem 3rem;
+    border-radius: 24px;
     margin-bottom: 3rem;
+    box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
 }
 
 .about-hero-content {
@@ -215,8 +597,6 @@
     grid-template-columns: 250px 1fr;
     gap: 3rem;
     align-items: center;
-    max-width: 900px;
-    margin: 0 auto;
 }
 
 .about-avatar-large {
@@ -226,6 +606,11 @@
     overflow: hidden;
     border: 6px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.about-avatar-large:hover {
+    transform: scale(1.05) rotate(5deg);
 }
 
 .about-avatar-large img {
@@ -237,27 +622,102 @@
 .about-hero-text h1 {
     font-size: 3rem;
     margin-bottom: 0.5rem;
+    font-weight: 700;
 }
 
 .about-title {
     font-size: 1.5rem;
     opacity: 0.9;
     margin-bottom: 1rem;
+    font-weight: 500;
 }
 
 .about-bio {
     font-size: 1.1rem;
     line-height: 1.8;
     opacity: 0.95;
+    margin-bottom: 2rem;
 }
 
-/* Sections */
+/* Quick Stats */
+.quick-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* CV Actions */
+.cv-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn-download-cv,
+.btn-contact {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.btn-download-cv {
+    background: white;
+    color: #667eea;
+}
+
+.btn-download-cv:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+}
+
+.btn-contact {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border-color: white;
+}
+
+.btn-contact:hover {
+    background: white;
+    color: #667eea;
+}
+
+/* Section Styles */
 .about-section {
     background: white;
     padding: 3rem;
-    border-radius: 16px;
+    border-radius: 20px;
     margin-bottom: 2rem;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
 
 .section-heading {
@@ -284,269 +744,908 @@
 .about-quote {
     font-size: 1.3rem;
     font-style: italic;
-    color: #3b82f6;
-    border-left: 4px solid #3b82f6;
+    color: #667eea;
+    border-left: 4px solid #667eea;
     padding-left: 2rem;
     margin: 2rem 0;
+    line-height: 1.6;
 }
 
-.about-hobbies h3 {
-    font-size: 1.3rem;
+/* Timeline (Work Experience) */
+.timeline {
+    position: relative;
+    padding-left: 3rem;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, #667eea, #764ba2);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -3.5rem;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #667eea;
+    border: 4px solid white;
+    box-shadow: 0 0 0 3px #667eea;
+}
+
+.timeline-content {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 12px;
+    border-left: 4px solid #667eea;
+}
+
+.timeline-header {
     margin-bottom: 1rem;
-    color: #333;
 }
 
-.hobbies-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.8rem;
-}
-
-.hobby-tag {
-    background: #f3f4f6;
-    padding: 0.5rem 1.2rem;
-    border-radius: 20px;
-    font-weight: 500;
-    color: #555;
-    border: 2px solid #e5e7eb;
-}
-
-/* Education */
-.education-list {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
-.education-item {
-    display: grid;
-    grid-template-columns: 150px 1fr;
-    gap: 2rem;
-    padding-bottom: 2rem;
-    border-bottom: 2px solid #f3f4f6;
-}
-
-.education-item:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-}
-
-.education-period {
-    font-weight: 600;
-    color: #3b82f6;
-    font-size: 1.1rem;
-}
-
-.education-school {
+.timeline-header h3 {
     font-size: 1.5rem;
     color: #111;
     margin-bottom: 0.5rem;
 }
 
-.education-degree {
-    color: #666;
+.timeline-company {
+    display: block;
+    font-size: 1.1rem;
+    color: #667eea;
+    font-weight: 600;
     margin-bottom: 0.5rem;
 }
 
-.education-achievement {
-    color: #3b82f6;
-    font-weight: 600;
-}
-
-/* Skills */
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 1rem;
-}
-
-.skill-item {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+.timeline-date {
+    display: inline-block;
+    background: #667eea;
     color: white;
-    padding: 1rem;
-    border-radius: 12px;
-    text-align: center;
-    font-weight: 600;
-    font-size: 1.1rem;
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
 }
 
-/* Gallery */
-.gallery-grid {
+.timeline-responsibilities {
+    list-style: none;
+    margin: 1.5rem 0;
+}
+
+.timeline-responsibilities li {
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
+    position: relative;
+    color: #555;
+    line-height: 1.6;
+}
+
+.timeline-responsibilities li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #667eea;
+    font-weight: bold;
+}
+
+.timeline-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.tech-tag {
+    background: #667eea;
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* Education Section */
+.education-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
 }
 
-.gallery-item {
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
+.education-card {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8eef5 100%);
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    border: 2px solid transparent;
 }
 
-.gallery-item:hover {
+.education-card:hover {
     transform: translateY(-5px);
+    border-color: #667eea;
 }
 
-.gallery-item img {
+.education-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.education-card h3 {
+    font-size: 1.3rem;
+    color: #111;
+    margin-bottom: 0.5rem;
+}
+
+.education-degree {
+    font-size: 1rem;
+    color: #667eea;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.education-period {
+    color: #777;
+    margin-bottom: 1rem;
+}
+
+.education-achievement {
+    color: #555;
+    font-style: italic;
+}
+
+/* Skills Section */
+.skills-category {
+    margin-bottom: 3rem;
+}
+
+.skills-category h3 {
+    font-size: 1.3rem;
+    color: #111;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Skill Bars */
+.skills-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.skill-bar {
+    width: 100%;
+}
+
+.skill-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.skill-progress {
+    height: 12px;
+    background: #e8eef5;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.skill-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    border-radius: 10px;
+    transition: width 1s ease;
+}
+
+/* Tech Grid */
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.tech-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.tech-item:hover {
+    background: white;
+    border-color: #667eea;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+.tech-icon {
+    font-size: 1.5rem;
+}
+
+/* Certifications */
+.cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.cert-card {
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8eef5 100%);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+}
+
+.cert-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.cert-badge {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.cert-card h4 {
+    font-size: 1.1rem;
+    color: #111;
+    margin-bottom: 0.5rem;
+}
+
+.cert-issuer {
+    color: #667eea;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.cert-date {
+    color: #777;
+    font-size: 0.9rem;
+}
+
+/* Projects Showcase */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.project-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.project-image {
     width: 100%;
     height: 200px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
 }
 
-.gallery-caption {
-    padding: 1rem;
-    background: #f9fafb;
+.project-content {
+    padding: 1.5rem;
+}
+
+.project-content h4 {
+    font-size: 1.2rem;
+    color: #111;
+    margin-bottom: 0.75rem;
+}
+
+.project-content p {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.project-tech span {
+    background: #e8eef5;
+    color: #667eea;
+    padding: 0.3rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* Hobbies Section */
+.hobbies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.hobby-card {
     text-align: center;
+    padding: 2rem 1rem;
+    background: #f8f9fa;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.hobby-card:hover {
+    background: white;
+    border-color: #667eea;
+    transform: translateY(-5px);
+}
+
+.hobby-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.hobby-card p {
     color: #555;
     font-weight: 500;
 }
 
-/* Community */
-.community-section {
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-    border: 2px solid #667eea;
-}
-
-.community-text {
+/* Community Section */
+.community-intro {
     font-size: 1.1rem;
     line-height: 1.8;
     color: #555;
     margin-bottom: 2rem;
 }
 
-.community-activities h3 {
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
-    color: #333;
+.community-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 2rem 0;
 }
 
-.community-activities ul {
+.community-stat {
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 16px;
+}
+
+.community-stat .stat-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.community-stat .stat-value {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.community-stat .stat-label {
+    display: block;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.activity-list {
     list-style: none;
-    padding: 0;
+    margin-top: 2rem;
 }
 
-.community-activities li {
-    padding: 0.8rem 0;
-    padding-left: 2rem;
+.activity-list li {
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+    padding-left: 2.5rem;
     position: relative;
-    color: #555;
-    font-size: 1.1rem;
 }
 
-.community-activities li:before {
-    content: "✓";
+.activity-list li::before {
+    content: '✓';
     position: absolute;
-    left: 0;
-    color: #3b82f6;
+    left: 1rem;
+    color: #667eea;
     font-weight: bold;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
 }
 
-/* Contact */
+/* Contact Section */
 .contact-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-bottom: 2rem;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 3rem;
+}
+
+.contact-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #111;
+}
+
+.contact-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
 .contact-item {
     display: flex;
+    align-items: flex-start;
     gap: 1rem;
-    align-items: start;
 }
 
 .contact-icon {
-    font-size: 2rem;
-    width: 50px;
-    height: 50px;
-    background: #f3f4f6;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    font-size: 1.5rem;
+    color: #667eea;
 }
 
-.contact-info h4 {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-    color: #333;
+.contact-item strong {
+    display: block;
+    color: #111;
+    margin-bottom: 0.25rem;
 }
 
-.contact-info p {
-    color: #666;
-}
-
-.contact-info a {
-    color: #3b82f6;
+.contact-item a {
+    color: #667eea;
     text-decoration: none;
 }
 
-.contact-info a:hover {
+.contact-item a:hover {
     text-decoration: underline;
 }
 
-.contact-availability {
-    text-align: center;
-    font-size: 1.2rem;
-    color: #3b82f6;
+.contact-item p {
+    color: #555;
+    margin: 0;
+}
+/* Availability Badge */
+.availability-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #d4edda;
+    color: #155724;
+    padding: 0.75rem 1.5rem;
+    border-radius: 24px;
     font-weight: 600;
-    padding: 1.5rem;
-    background: rgba(59, 130, 246, 0.1);
-    border-radius: 12px;
+    margin-top: 2rem;
 }
 
-/* Social Links */
-.social-links-large {
+.status-dot {
+    width: 10px;
+    height: 10px;
+    background: #28a745;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Contact Form */
+.contact-form-container h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #111;
+}
+
+.contact-form {
     display: flex;
-    gap: 1rem;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #333;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 0.75rem 1rem;
+    border: 2px solid #e8eef5;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.btn-submit {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+/* Social Links Section */
+.social-buttons {
+    display: flex;
     flex-wrap: wrap;
+    gap: 1rem;
     justify-content: center;
 }
 
 .social-button {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: 0.75rem;
     padding: 1rem 2rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    text-decoration: none;
     border-radius: 12px;
+    text-decoration: none;
     font-weight: 600;
-    font-size: 1.1rem;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
+    color: white;
 }
 
 .social-button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Responsive */
+.social-button.github {
+    background: #333;
+}
+
+.social-button.github:hover {
+    background: #24292e;
+}
+
+.social-button.facebook {
+    background: #1877f2;
+}
+
+.social-button.facebook:hover {
+    background: #166fe5;
+}
+
+.social-button.linkedin {
+    background: #0077b5;
+}
+
+.social-button.linkedin:hover {
+    background: #006399;
+}
+
+.social-button.twitter {
+    background: #1da1f2;
+}
+
+.social-button.twitter:hover {
+    background: #1a91da;
+}
+
+.social-button.email {
+    background: #ea4335;
+}
+
+.social-button.email:hover {
+    background: #d33828;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .about-hero-content {
+        grid-template-columns: 200px 1fr;
+        gap: 2rem;
+    }
+    
+    .about-avatar-large {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .about-hero-text h1 {
+        font-size: 2.5rem;
+    }
+    
+    .quick-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+    
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .community-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 768px) {
+    .container {
+        padding: 0 1rem;
+    }
+    
+    .about-page {
+        padding: 2rem 0;
+    }
+    
+    .about-hero {
+        padding: 2rem 1.5rem;
+    }
+    
     .about-hero-content {
         grid-template-columns: 1fr;
         text-align: center;
+        gap: 2rem;
     }
     
     .about-avatar-large {
         margin: 0 auto;
     }
     
-    .education-item {
+    .about-hero-text h1 {
+        font-size: 2rem;
+    }
+    
+    .about-title {
+        font-size: 1.2rem;
+    }
+    
+    .quick-stats {
         grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .cv-actions {
+        flex-direction: column;
+        align-items: stretch;
     }
     
     .about-section {
         padding: 2rem 1.5rem;
     }
     
-    .gallery-grid {
+    .section-heading {
+        font-size: 1.5rem;
+    }
+    
+    .timeline {
+        padding-left: 2rem;
+    }
+    
+    .timeline-marker {
+        left: -2.5rem;
+    }
+    
+    .education-grid,
+    .cert-grid,
+    .projects-grid {
         grid-template-columns: 1fr;
     }
+    
+    .tech-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .skills-bars {
+        gap: 1rem;
+    }
+    
+    .hobbies-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .community-stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .social-buttons {
+        flex-direction: column;
+    }
+    
+    .social-button {
+        justify-content: center;
+    }
 }
-</style>
 
-{{ end }}
+@media (max-width: 480px) {
+    .about-hero-text h1 {
+        font-size: 1.75rem;
+    }
+    
+    .about-title {
+        font-size: 1rem;
+    }
+    
+    .about-bio {
+        font-size: 1rem;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .stat-label {
+        font-size: 0.85rem;
+    }
+    
+    .section-heading {
+        font-size: 1.3rem;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .section-icon {
+        font-size: 2rem;
+    }
+    
+    .timeline-content {
+        padding: 1.5rem;
+    }
+    
+    .timeline-header h3 {
+        font-size: 1.2rem;
+    }
+    
+    .tech-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .btn-download-cv,
+    .btn-contact {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .about-page {
+        background: white;
+    }
+    
+    .about-hero {
+        background: #667eea;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+    
+    .about-section {
+        page-break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+    
+    .cv-actions,
+    .social-buttons,
+    .contact-form {
+        display: none;
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.about-section {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.about-section:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.about-section:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.about-section:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+/* Accessibility */
+.about-page a:focus,
+.about-page button:focus,
+.about-page input:focus,
+.about-page textarea:focus {
+    outline: 3px solid #667eea;
+    outline-offset: 2px;
+}
+
+/* Dark mode support (optional) */
+@media (prefers-color-scheme: dark) {
+    /* Uncomment to enable dark mode */
+    /*
+    .about-page {
+        background: #1a1a1a;
+        color: #fff;
+    }
+    
+    .about-section {
+        background: #2a2a2a;
+        color: #fff;
+    }
+    
+    .timeline-content,
+    .education-card,
+    .cert-card,
+    .hobby-card,
+    .activity-list li {
+        background: #333;
+        color: #fff;
+    }
+    */
+}
